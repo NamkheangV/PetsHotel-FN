@@ -1,6 +1,7 @@
 .header {
     background-color: #53b1b1;
     position: sticky;
+    top: 0;
     z-index: 1;
     width: 100%;
     flex-direction: row;
@@ -21,8 +22,7 @@
 }
 
 .h1 {
-    font-size: 30px;
-    font-family: cursive;
+    font-size: 35px;
     color: #11222c;
 }
 

@@ -6,12 +6,13 @@ const { Header } = Layout;
 
 export default function Navbar() {
   return (
-    <Header className={styles.header} style={{ position: "sticky" }}>
+    <Header className={styles.header}>
       <div
         style={{
           float: "left",
-          width: 240,
+          width: 280,
           height: 50,
+          // backgroundColor: "red",
         }}
       >
         <Link href="/">
@@ -40,10 +41,10 @@ export default function Navbar() {
         <Menu.Item key="rooms">
           <Link href="/rooms">ROOMS & SUITES</Link>
         </Menu.Item>
-        <Menu.Item key="about">
-          <Link href="">ABOUT</Link>
+        <Menu.Item key="contact">
+          <Link href="">CONTACT</Link>
         </Menu.Item>
-        <Menu.Item key="LogReg">
+        <Menu.Item key="login">
           <Link href="/login">
             <Button className={styles.btn} type="primary" shape="round">
               LOGIN / REGISTER
