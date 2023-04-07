@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
+
 .page {
     display: flex;
     flex-direction: column;
@@ -22,10 +24,10 @@
 }
 
 .h1 {
-    font-size: 3em;
+    font-family: 'Caveat', cursive;
+    font-size: 3.5em;
     font-weight: 700;
     text-align: center;
-    margin: 0;
 }
 
 /* .form {

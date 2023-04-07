@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { Carousel, Button } from "antd";
+import Link from "next/link";
+import { Carousel, Button, Divider } from "antd";
 import styles from "@/styles/Home.module.css";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
         <meta name="description" content="Pets Hotel,โรงแรมสัตว์เลี้ยง" />
       </Head>
 
-      <main>
+      <div className={styles.page}>
         <div className={styles.container}>
           {/* <h1>Home Page</h1> */}
           <Carousel autoplay>
@@ -37,12 +38,14 @@ export default function Home() {
           </Carousel>
 
           <div className={styles.buttons}>
-            <Button className={styles.button} shape="round">
-              BOOKING ROOM
-            </Button>
+            <Link href="/rooms">
+              <Button className={styles.button} shape="round">
+                BOOKING ROOM
+              </Button>
+            </Link>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

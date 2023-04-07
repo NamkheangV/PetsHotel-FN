@@ -10,8 +10,12 @@ import {
   Radio,
   Select,
   Upload,
+  Card,
+  Col,
+  Row,
 } from "antd";
 
+const { Meta } = Card;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 const props = {
@@ -35,73 +39,60 @@ export default function Rooms() {
       </header>
 
       <div className={styles.page}>
-        <div className={styles.container}>
-          <Form
-            className={styles.form}
-            labelCol={{
-              span: 6,
-            }}
-            wrapperCol={{
-              span: 14,
-            }}
-            layout="horizontal"
-          >
-            <Form.Item label="Your name">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Contact">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Pet name">
-              <Input />
-            </Form.Item>
-
-            <Form.Item label="Type">
-              <Select>
-                <Select.Option value="1">Cat</Select.Option>
-                <Select.Option value="2">Dog</Select.Option>
-              </Select>
-            </Form.Item>
-
-            <Form.Item label="Gender">
-              <Radio.Group>
-                <Radio value="male"> Male </Radio>
-                <Radio value="female"> Female </Radio>
-              </Radio.Group>
-            </Form.Item>
-
-            <Form.Item label="Check IN-OUT">
-              <RangePicker />
-            </Form.Item>
-
-            <Form.Item label="Pet(s)">
-              <InputNumber />
-            </Form.Item>
-
-            <Form.Item label="Other">
-              <TextArea rows={4} />
-            </Form.Item>
-
-            <Form.Item label="Upload" valuePropName="fileList">
-              <Upload {...props} listType="picture-card">
-                <div>
-                  <PlusOutlined />
-                  <div
-                    style={{
-                      marginTop: 8,
-                    }}
-                  >
-                    Pet Picture
-                  </div>
-                </div>
-              </Upload>
-            </Form.Item>
-          </Form>
-
-          <Button className={styles.button} block>
-            Confirm
-          </Button>
+        <div>
+          <h1 className={styles.h1}>ROOMS & SUITES</h1>
         </div>
+
+        <Row gutter={20}>
+          <Col span={8}>
+            <Card
+              hoverable
+              style={{
+                width: 300,
+              }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                />
+              }
+            >
+              <Meta title="Standart" description="Rooms for ......" />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card
+              hoverable
+              style={{
+                width: 300,
+              }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                />
+              }
+            >
+              <Meta title="Standart" description="Rooms for ......" />
+            </Card>
+          </Col>
+          <Col span={8}>
+            <Card
+              hoverable
+              style={{
+                width: 300,
+              }}
+              cover={
+                <img
+                  alt="example"
+                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                />
+              }
+            >
+              <Meta title="Standart" description="Rooms for ......" />
+            </Card>
+          </Col>
+        </Row>
       </div>
     </div>
   );

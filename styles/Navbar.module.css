@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
+
 .header {
     background-color: #53b1b1;
     position: sticky;
@@ -22,7 +24,9 @@
 }
 
 .h1 {
-    font-size: 35px;
+    font-family: 'Caveat', cursive;
+    font-size: 3em;
+    font-weight: 700;
     color: #11222c;
 }
 

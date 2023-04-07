@@ -1,4 +1,4 @@
-import styles from "@/styles/register.module.css";
+import styles from "@/styles/Register.module.css";
 import Link from "next/link";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Input, Form, Upload } from "antd";

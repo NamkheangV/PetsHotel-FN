@@ -2,9 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 90vh;
     width: 100%;
+}
+
+.h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5em;
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0 20px 0;
 }
 
 .container {
@@ -16,3 +23,71 @@
 .form {
     padding: 10px 20px 5px 55px;
 }
+
+/* <div className={styles.container}>
+          <Form
+            className={styles.form}
+            labelCol={{
+              span: 6,
+            }}
+            wrapperCol={{
+              span: 14,
+            }}
+            layout="horizontal"
+          >
+            <Form.Item label="Your name">
+              <Input />
+            </Form.Item>
+            <Form.Item label="Contact">
+              <Input />
+            </Form.Item>
+            <Form.Item label="Pet name">
+              <Input />
+            </Form.Item>
+
+            <Form.Item label="Type">
+              <Select>
+                <Select.Option value="1">Cat</Select.Option>
+                <Select.Option value="2">Dog</Select.Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item label="Gender">
+              <Radio.Group>
+                <Radio value="male"> Male </Radio>
+                <Radio value="female"> Female </Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Form.Item label="Check IN-OUT">
+              <RangePicker />
+            </Form.Item>
+
+            <Form.Item label="Pet(s)">
+              <InputNumber />
+            </Form.Item>
+
+            <Form.Item label="Other">
+              <TextArea rows={4} />
+            </Form.Item>
+
+            <Form.Item label="Upload" valuePropName="fileList">
+              <Upload {...props} listType="picture-card">
+                <div>
+                  <PlusOutlined />
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
+                  >
+                    Pet Picture
+                  </div>
+                </div>
+              </Upload>
+            </Form.Item>
+          </Form>
+
+          <Button className={styles.button} block>
+            Confirm
+          </Button>
+        </div> */
