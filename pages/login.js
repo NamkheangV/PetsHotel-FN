@@ -29,12 +29,6 @@ export default function Login() {
             wrapperCol={{
               span: 18,
             }}
-            style={{
-              maxWidth: 600,
-            }}
-            initialValues={{
-              remember: true,
-            }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="off"
@@ -72,7 +66,7 @@ export default function Login() {
 
           <div>
             <a>Don't have an account? </a>
-            <Link href="/">Register</Link>
+            <Link href="/register">Register</Link>
           </div>
         </div>
       </div>
