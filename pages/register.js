@@ -101,9 +101,9 @@ export default function Register() {
               <Input />
             </Form.Item> */}
 
-            <Form.Item label="Upload" valuePropName="fileList">
+            <Form.Item label="Your Image" valuePropName="fileList">
               <Upload {...props} listType="picture" maxCount={1}>
-                <Button icon={<UploadOutlined />}>Your Image</Button>
+                <Button icon={<UploadOutlined />}>Upload</Button>
               </Upload>
             </Form.Item>
 
