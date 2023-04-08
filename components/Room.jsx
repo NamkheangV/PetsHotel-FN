@@ -31,9 +31,9 @@ const props = {
   },
 };
 
-export default function Rooms() {
+export default function Room() {
   return (
-    <div>
+    <div id="roomtest">
       <header>
         <title>Rooms & Suites | Pets Hotel</title>
       </header>
@@ -43,53 +43,45 @@ export default function Rooms() {
           <h1 className={styles.h1}>ROOMS & SUITES</h1>
         </div>
 
-        <Row gutter={20}>
+        <div className=""></div>
+        <Row gutter={80} style={{}}>
           <Col span={8}>
             <Card
               hoverable
               style={{
-                width: 300,
+                width: 400,
+                height: 400,
               }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                />
-              }
+              cover={<img alt="standart" src="/origi05.jpg" />}
             >
-              <Meta title="Standart" description="Rooms for ......" />
+              <Meta title="The Standart" description="Rooms for ......" />
             </Card>
           </Col>
           <Col span={8}>
             <Card
               hoverable
               style={{
-                width: 300,
+                width: 400,
+                height: 400,
               }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                />
-              }
+              cover={<img alt="deluxe" src="/origi04.jpg" />}
             >
-              <Meta title="Standart" description="Rooms for ......" />
+              <Meta title="The Deluxe" description="Rooms for ......" />
             </Card>
           </Col>
           <Col span={8}>
             <Card
               hoverable
               style={{
-                width: 300,
+                width: 400,
+                height: 400,
               }}
-              cover={
-                <img
-                  alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                />
-              }
+              cover={<img alt="condo" src="/origi03.jpg" />}
             >
-              <Meta title="Standart" description="Rooms for ......" />
+              <Meta
+                title="The Condo (Cat Only)"
+                description="Rooms for ......"
+              />
             </Card>
           </Col>
         </Row>

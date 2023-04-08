@@ -39,10 +39,10 @@ export default function Navbar() {
           <Link href="/">HOME</Link>
         </Menu.Item>
         <Menu.Item key="rooms">
-          <Link href="/rooms">ROOMS & SUITES</Link>
+          <Link href="/#roomtest">ROOMS & SUITES</Link>
         </Menu.Item>
         <Menu.Item key="contact">
-          <Link href="">CONTACT</Link>
+          <Link href="/#contact">CONTACT</Link>
         </Menu.Item>
         <Menu.Item key="login">
           <Link href="/login">

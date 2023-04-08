@@ -1,4 +1,5 @@
 import styles from "@/styles/Register.module.css";
+import Head from "next/head";
 import Link from "next/link";
 import { UploadOutlined } from "@ant-design/icons";
 import { Button, Input, Form, Upload } from "antd";
@@ -25,9 +26,9 @@ const props = {
 export default function Register() {
   return (
     <div>
-      <header>
+      <Head>
         <title>Register | Pets Hotel</title>
-      </header>
+      </Head>
 
       <div className={styles.page}>
         <div className={styles.container}>

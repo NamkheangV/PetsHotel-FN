@@ -1,3 +1,4 @@
+import Head from "next/head";
 import styles from "@/styles/Login.module.css";
 import Link from "next/link";
 import { Button, Input, Form } from "antd";
@@ -12,9 +13,9 @@ const onFinishFailed = (errorInfo) => {
 export default function Login() {
   return (
     <div>
-      <header>
+      <Head>
         <title>Login | Pets Hotel</title>
-      </header>
+      </Head>
 
       <div className={styles.page}>
         <div className={styles.container}>
