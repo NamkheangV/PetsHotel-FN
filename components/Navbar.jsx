@@ -1,6 +1,7 @@
 import { Layout, Menu, Button } from "antd";
 import Link from "next/link";
 import styles from "@/styles/Navbar.module.css";
+import LogButton from "./LogButton";
 
 const { Header } = Layout;
 
@@ -36,7 +37,7 @@ export default function Navbar() {
         defaultSelectedKeys={["2"]}
       >
         <Menu.Item key="home">
-          <Link href="/">HOME</Link>
+          <Link href="/#">HOME</Link>
         </Menu.Item>
         <Menu.Item key="rooms">
           <Link href="/#roomtest">ROOMS & SUITES</Link>
@@ -45,11 +46,7 @@ export default function Navbar() {
           <Link href="/#contact">CONTACT</Link>
         </Menu.Item>
         <Menu.Item key="login">
-          <Link href="/login">
-            <Button className={styles.btn} type="primary" shape="round">
-              LOGIN / REGISTER
-            </Button>
-          </Link>
+          <LogButton />
         </Menu.Item>
       </Menu>
     </Header>

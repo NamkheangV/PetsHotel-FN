@@ -1,26 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
 
-.page {
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 90vh;
-    width: 100%;
 }
 
 .container {
-    background-color: rgb(255, 255, 255);
-    width: 30em;
-    height: 40em;
-    position: relative;
-    border-radius: 1em;
-    box-shadow: 0 0.188em 1.550em rgba(0, 0, 0, 0.2);
+    height: 54vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-evenly;
-    padding: 0 10px 0 10px;
+    justify-content: space-around;
+    
 }
 
 .h1 {
@@ -30,7 +22,6 @@
     text-align: center;
 }
 
-/* .form {
-    margin: 25px 0 0 0;
-   background-color: rgb(223, 183, 183);
-} */
+.button {
+    max-width: 20em;
+}

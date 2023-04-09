@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.css";
 
 export default function Hero() {
   return (
-    <div className={styles.page}>
+    <div id="Home" className={styles.page}>
       <div className={styles.container}>
         {/* <h1>Home Page</h1> */}
         <Carousel autoplay>
