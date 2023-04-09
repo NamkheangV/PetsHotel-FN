@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
-import { gapi } from "gapi-script";
 import { Button, Input, Form, Divider } from "antd";
 
 const onFinish = (values) => {
@@ -12,20 +11,11 @@ const onFinishFailed = (errorInfo) => {
 };
 
 export default function Login() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <div className={styles.container}>
         <h1 className={styles.h1}>Login</h1>
         <Form
-          name="basic"
           labelCol={{
             span: 8,
           }}
@@ -37,8 +27,8 @@ export default function Login() {
           autoComplete="off"
         >
           <Form.Item
+            id="username"
             label="Username"
-            name="username"
             rules={[
               {
                 required: true,
@@ -46,12 +36,12 @@ export default function Login() {
               },
             ]}
           >
-            <Input />
+            <Input placeholder="user123" />
           </Form.Item>
 
           <Form.Item
+            id="password"
             label="Password"
-            name="password"
             rules={[
               {
                 required: true,
@@ -59,7 +49,7 @@ export default function Login() {
               },
             ]}
           >
-            <Input.Password />
+            <Input.Password placeholder="abc123" />
           </Form.Item>
         </Form>
 

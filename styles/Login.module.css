@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
 
 .container { 
-    height: 60vh;
+    height: 52vh;
     display: flex;
     flex-direction: column;
     align-items: center;

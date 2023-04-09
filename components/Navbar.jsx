@@ -1,5 +1,5 @@
-import { Layout, Menu, Button } from "antd";
-import Link from "next/link";
+import { Layout, Menu } from "antd";
+import { Link } from "react-scroll";
 import styles from "@/styles/Navbar.module.css";
 import LogButton from "./LogButton";
 
@@ -37,13 +37,25 @@ export default function Navbar() {
         defaultSelectedKeys={["2"]}
       >
         <Menu.Item key="home">
-          <Link href="/#">HOME</Link>
+          <Link to="home" spy={true} smooth={true} offset={-100} duration={500}>
+            HOME
+          </Link>
         </Menu.Item>
         <Menu.Item key="rooms">
-          <Link href="/#roomtest">ROOMS & SUITES</Link>
+          <Link to="room" spy={true} smooth={true} offset={-100} duration={500}>
+            ROOMS & SUITES
+          </Link>
         </Menu.Item>
         <Menu.Item key="contact">
-          <Link href="/#contact">CONTACT</Link>
+          <Link
+            to="contact"
+            spy={true}
+            smooth={true}
+            offset={-100}
+            duration={500}
+          >
+            CONTACT
+          </Link>
         </Menu.Item>
         <Menu.Item key="login">
           <LogButton />

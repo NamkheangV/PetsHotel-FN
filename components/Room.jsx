@@ -1,19 +1,6 @@
 import styles from "@/styles/Rooms.module.css";
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  DatePicker,
-  message,
-  Form,
-  Input,
-  InputNumber,
-  Radio,
-  Select,
-  Upload,
-  Card,
-  Col,
-  Row,
-} from "antd";
+import { DatePicker, message, Input, Card, Col, Row } from "antd";
+import Head from "next/head";
 
 const { Meta } = Card;
 const { RangePicker } = DatePicker;
@@ -33,17 +20,12 @@ const props = {
 
 export default function Room() {
   return (
-    <div id="roomtest">
-      <header>
-        <title>Rooms & Suites | Pets Hotel</title>
-      </header>
-
+    <div id="room">
       <div className={styles.page}>
         <div>
           <h1 className={styles.h1}>ROOMS & SUITES</h1>
         </div>
 
-        <div className=""></div>
         <Row gutter={80} style={{}}>
           <Col span={8}>
             <Card

@@ -4,7 +4,7 @@ import styles from "@/styles/Home.module.css";
 
 export default function Hero() {
   return (
-    <div id="Home" className={styles.page}>
+    <div id="home" className={styles.page}>
       <div className={styles.container}>
         {/* <h1>Home Page</h1> */}
         <Carousel autoplay>
@@ -31,7 +31,7 @@ export default function Hero() {
         </Carousel>
 
         <div className={styles.buttons}>
-          <Link href="/rooms">
+          <Link href="/">
             <Button className={styles.button} shape="round">
               BOOKING ROOM
             </Button>
