@@ -1,5 +1,5 @@
 .container { 
-    height: 52vh;
+    height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
