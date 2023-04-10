@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Room from "@/components/Room";
+import About from "@/components/About";
 import Hero from "@/components/Hero";
 import Contact from "@/components/Contact";
 
@@ -12,6 +13,7 @@ export default function Home() {
       </Head>
 
       <Hero />
+      <About />
       <Room />
       <Contact />
     </div>

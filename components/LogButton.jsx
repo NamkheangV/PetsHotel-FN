@@ -34,10 +34,10 @@ const LogButton = () => {
           <Col span={12}>
             <Login />
           </Col>
-          {/* <Col span={2}>
-            <Divider type="vertical" />
-          </Col> */}
-          <Col span={12}>
+          <Col span={1}>
+            <Divider type="vertical" style={{ height: "100%" }} />
+          </Col>
+          <Col span={11}>
             <Register />
           </Col>
         </Row>

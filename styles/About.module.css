@@ -1,9 +1,9 @@
-.container { 
-    height: 52vh;
+.page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly; 
+    height: 400px;
+    max-width: 100%;
 }
 
 .h1 {
@@ -11,12 +11,12 @@
     font-size: 3.5em;
     font-weight: 700;
     text-align: center;
+    margin: 32px 0 52px 0;
 }
 
-.button {
-    max-width: 22em;
+.p {
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-
-
-
