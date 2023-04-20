@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
 import { Button, Input, Form, Divider } from "antd";

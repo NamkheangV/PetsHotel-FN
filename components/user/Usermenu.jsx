@@ -35,11 +35,7 @@ export default function Usermenu() {
             placement="bottomRight"
             arrow
           >
-            <Avatar
-              src="animal-shelter.png"
-              size="large"
-              icon={<UserOutlined />}
-            />
+            <Avatar src="Hero06.jpg" size="large" icon={<UserOutlined />} />
           </Dropdown>
         </Col>
       </Row>

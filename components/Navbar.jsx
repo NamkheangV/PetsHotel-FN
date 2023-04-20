@@ -2,7 +2,7 @@ import { Layout, Menu } from "antd";
 import { Link } from "react-scroll";
 import styles from "@/styles/Navbar.module.css";
 import LogButton from "./LogButton";
-import Usermenu from "./Usermenu";
+import Usermenu from "./user/Usermenu";
 
 const { Header } = Layout;
 
@@ -29,7 +29,6 @@ export default function Navbar() {
             }}
           />
         </Link>
-        {/* <p>PETS HOTEL</p> */}
         <h1 className={styles.h1}>Pets Hotel</h1>
       </div>
 
@@ -61,9 +60,8 @@ export default function Navbar() {
           </Link>
         </Menu.Item>
 
-        <Menu.Item>
+        <Menu.Item key="login">
           <LogButton />
-          {/* <Usermenu /> */}
         </Menu.Item>
       </Menu>
     </Header>

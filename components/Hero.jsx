@@ -29,13 +29,13 @@ export default function Hero() {
           </div>
         </Carousel>
 
-        {/* <div className={styles.buttons}>
-          <Link href="/">
+        <div className={styles.buttons}>
+          <Link href="/Booking">
             <Button className={styles.button} shape="round">
               BOOKING ROOM
             </Button>
           </Link>
-        </div> */}
+        </div>
       </div>
     </div>
   );

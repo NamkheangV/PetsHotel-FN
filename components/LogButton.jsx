@@ -30,7 +30,7 @@ const LogButton = () => {
         onCancel={handleCancel}
         width={880}
       >
-        <Row gutter={16}>
+        <Row>
           <Col span={12}>
             <Login />
           </Col>

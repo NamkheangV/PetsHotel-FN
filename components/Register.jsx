@@ -1,4 +1,3 @@
-import { UploadOutlined } from "@ant-design/icons";
 import { Button, Input, Form, Upload, message } from "antd";
 import styles from "@/styles/Register.module.css";
 import {
@@ -6,6 +5,7 @@ import {
   UserOutlined,
   LockOutlined,
   CheckOutlined,
+  UploadOutlined,
 } from "@ant-design/icons";
 
 const onFinish = (values) => {
@@ -14,18 +14,18 @@ const onFinish = (values) => {
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-const props = {
-  beforeUpload: (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    if (!isJpgOrPng) {
-      message.error(`${file.name} is not a file image!`);
-    }
-    return isJpgOrPng || Upload.LIST_IGNORE;
-  },
-  onChange: (info) => {
-    console.log(info.fileList);
-  },
-};
+// const props = {
+//   beforeUpload: (file) => {
+//     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+//     if (!isJpgOrPng) {
+//       message.error(`${file.name} is not a file image!`);
+//     }
+//     return isJpgOrPng || Upload.LIST_IGNORE;
+//   },
+//   onChange: (info) => {
+//     console.log(info.fileList);
+//   },
+// };
 
 export default function Register() {
   return (
@@ -97,7 +97,7 @@ export default function Register() {
               rules={[
                 {
                   required: true,
-                  message: "Please input !",
+                  message: "Please input confirm password!",
                 },
               ]}
             >
@@ -108,11 +108,11 @@ export default function Register() {
               />
             </Form.Item>
 
-            <Form.Item label="Your Images" valuePropName="fileList">
+            {/* <Form.Item valuePropName="fileList">
               <Upload {...props} listType="picture" maxCount={1}>
-                <Button icon={<UploadOutlined />}>Upload</Button>
+                <Button icon={<UploadOutlined />}>Upload Your Image</Button>
               </Upload>
-            </Form.Item>
+            </Form.Item> */}
           </Form>
           <Button className={styles.button} block>
             Register

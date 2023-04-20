@@ -6,7 +6,7 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Home | Pets Hotel</title>
         <meta name="description" content="Pets Hotel,โรงแรมสัตว์เลี้ยง" />
@@ -16,6 +16,6 @@ export default function Home() {
       <About />
       <Room />
       <Contact />
-    </div>
+    </>
   );
 }
