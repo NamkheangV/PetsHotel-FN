@@ -2,8 +2,8 @@ import Head from "next/head";
 import styles from "@/styles/Booking.module.css";
 import { useState } from "react";
 import { Button, message, Steps } from "antd";
-import InfoForm from "@/components/user/InfoForm.jsx";
-import PaymForm from "@/components/user/PaymentForm.jsx";
+import InfoForm from "@/components/ิbooking/InfoForm.jsx";
+import PaymForm from "@/components/ิbooking/PaymentForm.jsx";
 
 const steps = [
   {
@@ -11,12 +11,12 @@ const steps = [
     content: InfoForm(),
   },
   {
-    title: "Payment",
-    content: PaymForm(),
+    title: "Receipt",
+    content: "",
   },
   {
-    title: "Reciept",
-    content: "Last-content",
+    title: "Payment",
+    content: PaymForm(),
   },
 ];
 

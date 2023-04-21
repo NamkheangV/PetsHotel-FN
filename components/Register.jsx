@@ -1,4 +1,4 @@
-import { Button, Input, Form, Upload, message } from "antd";
+import { Button, Input, Form } from "antd";
 import styles from "@/styles/Register.module.css";
 import {
   MailOutlined,
@@ -14,18 +14,6 @@ const onFinish = (values) => {
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
-// const props = {
-//   beforeUpload: (file) => {
-//     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-//     if (!isJpgOrPng) {
-//       message.error(`${file.name} is not a file image!`);
-//     }
-//     return isJpgOrPng || Upload.LIST_IGNORE;
-//   },
-//   onChange: (info) => {
-//     console.log(info.fileList);
-//   },
-// };
 
 export default function Register() {
   return (
@@ -107,12 +95,6 @@ export default function Register() {
                 style={{ width: "20em" }}
               />
             </Form.Item>
-
-            {/* <Form.Item valuePropName="fileList">
-              <Upload {...props} listType="picture" maxCount={1}>
-                <Button icon={<UploadOutlined />}>Upload Your Image</Button>
-              </Upload>
-            </Form.Item> */}
           </Form>
           <Button className={styles.button} block>
             Register

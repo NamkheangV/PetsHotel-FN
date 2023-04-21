@@ -7,15 +7,6 @@
     padding: 25px 0 8px 0;
 }
 
-.container2 {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    justify-content: space-around;
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -27,6 +18,9 @@
 }
 
 .step {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     width: 90%;
     height: 500px;
     border-radius: 16px;
@@ -36,3 +30,4 @@
 .img {
     border-radius: 20px;
 }
+
