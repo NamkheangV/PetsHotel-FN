@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, message, Steps } from "antd";
 import InfoForm from "@/components/ิbooking/InfoForm.jsx";
 import PaymForm from "@/components/ิbooking/PaymentForm.jsx";
+import ReceiptForm from "@/components/ิbooking/ReceiptForm";
 
 const steps = [
   {
@@ -12,7 +13,7 @@ const steps = [
   },
   {
     title: "Receipt",
-    content: "",
+    content: ReceiptForm(),
   },
   {
     title: "Payment",

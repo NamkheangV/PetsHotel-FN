@@ -31,3 +31,22 @@
     border-radius: 20px;
 }
 
+
+
+.receipt { 
+    height: 100%;
+    width: 100%;
+    padding:  50px 50px 50px 50px;
+}
+
+.detail {
+    /* background-color: grey; */
+    height: 220px;
+    width: 100%;
+    /* padding:  35px 35px 35px 35px; */
+}
+
+.col {
+    display: flex;
+    justify-content: center;
+}
