@@ -13,7 +13,6 @@ export default function Navbar() {
           float: "left",
           width: 280,
           height: 50,
-          // backgroundColor: "red",
         }}
       >
         <Link href="/">
@@ -30,7 +29,7 @@ export default function Navbar() {
         </Link>
         <h1 className={styles.h1}>Pets Hotel</h1>
       </div>
-      
+
       <NavMenu />
     </Header>
   );

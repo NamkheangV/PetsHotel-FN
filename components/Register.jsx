@@ -5,7 +5,6 @@ import {
   UserOutlined,
   LockOutlined,
   CheckOutlined,
-  UploadOutlined,
 } from "@ant-design/icons";
 
 const onFinish = (values) => {
