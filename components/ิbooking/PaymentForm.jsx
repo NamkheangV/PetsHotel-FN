@@ -1,4 +1,4 @@
-import { Upload,  Image, Divider, Button, message } from "antd";
+import { Upload, Image, Divider, Button, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import styles from "@/styles/Booking.module.css";
 
@@ -6,7 +6,7 @@ const props = {
   beforeUpload: (file) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
     if (!isJpgOrPng) {
-      message.error(`${file.name} is not a file image!`);
+      message.error(`${file.name} IS NOT FILE IMAGE!`);
     }
     return isJpgOrPng || Upload.LIST_IGNORE;
   },

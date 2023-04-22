@@ -18,7 +18,7 @@ const props = {
   beforeUpload: (file) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
     if (!isJpgOrPng) {
-      message.error(`${file.name} is not a file image!`);
+      message.error(`${file.name} IS NOT FILE IMAGE!`);
     }
     return isJpgOrPng || Upload.LIST_IGNORE;
   },

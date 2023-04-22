@@ -87,7 +87,7 @@ export default function ReceiptForm() {
             <Text>TOTAL</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text style={{ fontSize: "1.6rem" }}>450 Baht</Text>
+            <h2>450 Baht</h2>
           </Col>
         </Row>
       </div>

@@ -4,7 +4,7 @@ import { Avatar, Row, Col, Dropdown, Typography } from "antd";
 const { Text } = Typography;
 const items = [
   {
-    label: <a href="/">Profile</a>,
+    label: <a href="/profile">Profile</a>,
     key: "0",
   },
   {
