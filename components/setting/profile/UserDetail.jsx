@@ -13,7 +13,7 @@ export default function UserDetail() {
                 <Text style={{ marginLeft: 10, color: "#434242" }}>
                   Username
                 </Text>
-                <Input defaultValue={"YUHAMIN001"} />
+                <Input defaultValue={"YUHAMIN001"} disabled />
               </Col>
             </Row>
           </Form.Item>

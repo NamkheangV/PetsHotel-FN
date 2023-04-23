@@ -3,14 +3,9 @@ import styles from "@/styles/Setting.module.css";
 import { useState } from "react";
 import { Layout, Menu } from "antd";
 import React from "react";
-import {
-  ProfileOutlined,
-  HistoryOutlined,
-  KeyOutlined,
-} from "@ant-design/icons";
+import { ProfileOutlined, HistoryOutlined } from "@ant-design/icons";
 import Profile from "@/components/setting/Profile.jsx";
 import History from "@/components/setting/History.jsx";
-import ChangePass from "@/components/setting/ChangePass.jsx";
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -36,12 +31,6 @@ const items = [
     key: "1",
     icon: <HistoryOutlined />,
     content: History(),
-  },
-  {
-    title: "Change Password",
-    key: "2",
-    icon: <KeyOutlined />,
-    content: ChangePass(),
   },
 ];
 
