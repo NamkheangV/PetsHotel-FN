@@ -1,6 +1,9 @@
 import Head from "next/head";
 import styles from "@/styles/Admin.module.css";
-import { Table, Tag } from "antd";
+import { useState } from "react";
+import { Table, Tag, Modal } from "antd";
+import BookDetail from "@/components/admin/BookDetail.jsx";
+
 const header = [
   {
     title: "Customer name",
@@ -58,6 +61,14 @@ const data = [
 ];
 
 export default function Admin() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Head>
@@ -76,13 +87,17 @@ export default function Admin() {
           pagination={{ pageSize: 10 }}
           onRow={(record, rowIndex) => {
             return {
-              onClick: () => {
-                alert("clicked");
+              onClick: (event) => {
+                showModal();
               },
             };
           }}
         />
       </div>
+
+      <Modal footer={false} open={isModalOpen} onCancel={handleCancel}>
+        <BookDetail />
+      </Modal>
     </>
   );
 }

@@ -5,6 +5,7 @@ import { Button, message, Steps } from "antd";
 import InfoForm from "@/components/ิbooking/InfoForm.jsx";
 import PaymForm from "@/components/ิbooking/PaymentForm.jsx";
 import ReceiptForm from "@/components/ิbooking/ReceiptForm";
+import Wait from "@/components/ิbooking/Wait";
 
 const steps = [
   {
@@ -18,6 +19,10 @@ const steps = [
   {
     title: "Payment",
     content: PaymForm(),
+  },
+  {
+    title: "Confirmation",
+    content: Wait(),
   },
 ];
 
@@ -45,15 +50,17 @@ export default function Booking() {
         <Steps current={current} items={items} />
         <div className={styles.step}>{steps[current].content}</div>
         <div>
-          {current < steps.length - 1 && (
+          {current < steps.length - 2 && (
             <Button type="primary" onClick={() => next()}>
               Next
             </Button>
           )}
-          {current === steps.length - 1 && (
+          {current === steps.length - 2 && (
             <Button
               type="primary"
-              onClick={() => message.success("Booking Completed! Thank You 😻")}
+              onClick={() =>
+                message.success("Booking Completed! Thank You 😻") && next()
+              }
             >
               Confirm
             </Button>
