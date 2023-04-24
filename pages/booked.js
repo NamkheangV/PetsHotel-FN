@@ -1,32 +1,32 @@
 import Head from "next/head";
 import styles from "@/styles/Booking.module.css";
 import { useState } from "react";
-import { Button, message, Steps } from "antd";
-import InfoForm from "@/components/booking/InfoForm.jsx";
-import PaymForm from "@/components/booking/PaymentForm.jsx";
-import ReceiptForm from "@/components/booking/ReceiptForm";
-import Wait from "@/components/booking/Wait";
+import { Button, Steps } from "antd";
+import AdInFo from "@/components/admin/booked/AdInfo";
+import AdRecp from "@/components/admin/booked/AdRecp";
+import AdPaym from "@/components/admin/booked/AdPaym";
+import AdConfirm from "@/components/admin/booked/AdConfirm";
 
 const steps = [
   {
     title: "Information",
-    content: InfoForm(),
+    content: AdInFo(),
   },
   {
     title: "Receipt",
-    content: ReceiptForm(),
+    content: AdRecp(),
   },
   {
     title: "Payment",
-    content: PaymForm(),
+    content: AdPaym(),
   },
   {
     title: "Confirmation",
-    content: Wait(),
+    content: AdConfirm(),
   },
 ];
 
-export default function Booking() {
+export default function Booked() {
   const [current, setCurrent] = useState(0);
   const next = () => {
     setCurrent(current + 1);
@@ -42,27 +42,16 @@ export default function Booking() {
   return (
     <>
       <Head>
-        <title>Booking Room | Pets Hotel</title>
-        <meta name="description" content="Pets Hotel" />
+        <title>Booked Service | Pets Hotel</title>
       </Head>
 
       <div className={styles.content}>
         <Steps current={current} items={items} />
         <div className={styles.step}>{steps[current].content}</div>
         <div>
-          {current < steps.length - 2 && (
+          {current < steps.length - 1 && (
             <Button type="primary" onClick={() => next()}>
               Next
-            </Button>
-          )}
-          {current === steps.length - 2 && (
-            <Button
-              type="primary"
-              onClick={() =>
-                message.success("Booking Completed! Thank You 😻") && next()
-              }
-            >
-              Confirm
             </Button>
           )}
           {current > 0 && (

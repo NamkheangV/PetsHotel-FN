@@ -1,10 +1,11 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Row, Col, Dropdown, Typography } from "antd";
+import Admin from "./../../pages/adminService";
 
 const { Text } = Typography;
 const items = [
   {
-    label: <a href="/setting">Setting</a>,
+    label: <a href="/adminService">Service</a>,
     key: "0",
   },
   {
@@ -13,12 +14,12 @@ const items = [
   },
 ];
 
-export default function Usermenu() {
+export default function Adminmenu() {
   return (
     <>
       <Row gutter={25} style={{ marginLeft: "0 0 0 10px" }}>
         <Col span={12}>
-          <Text style={{ fontWeight: "500" }}>UserID1234</Text>
+          <Text style={{ fontWeight: "500" }}>Admin</Text>
         </Col>
         <Col span={12}>
           <Dropdown
@@ -28,7 +29,7 @@ export default function Usermenu() {
             placement="bottomRight"
             arrow
           >
-            <Avatar src="ProPic.png" size="large" icon={<UserOutlined />} />
+            <Avatar src="admin.jpg" size="large" icon={<UserOutlined />} />
           </Dropdown>
         </Col>
       </Row>

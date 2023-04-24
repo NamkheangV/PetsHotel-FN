@@ -1,8 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Admin.module.css";
-import { useState } from "react";
-import { Table, Tag, Modal } from "antd";
-import BookDetail from "@/components/admin/BookDetail.jsx";
+import { Table, Tag } from "antd";
+import { useRouter } from "next/router";
 
 const header = [
   {
@@ -61,13 +60,7 @@ const data = [
 ];
 
 export default function Admin() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const router = useRouter();
 
   return (
     <>
@@ -83,21 +76,16 @@ export default function Admin() {
           dataSource={data}
           size="middle"
           bordered
-          // tableLayout="fixed"
           pagination={{ pageSize: 10 }}
           onRow={(record, rowIndex) => {
             return {
               onClick: (event) => {
-                showModal();
+                router.push(`/booked`);
               },
             };
           }}
         />
       </div>
-
-      <Modal footer={false} open={isModalOpen} onCancel={handleCancel}>
-        <BookDetail />
-      </Modal>
     </>
   );
 }

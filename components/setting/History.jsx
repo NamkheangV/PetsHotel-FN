@@ -1,5 +1,4 @@
 import { Table, Tag, Empty } from "antd";
-import styles from "@/styles/Setting.module.css";
 
 const header = [
   {
@@ -88,30 +87,9 @@ const data = [
     petAmount: "2",
     status: "Pending",
   },
-  {
-    key: "9",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "10",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "11",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
 ];
 
-export default function History() {
+export default function History(router) {
   return (
     <>
       <Table
@@ -123,7 +101,7 @@ export default function History() {
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {
-              alert("clicked");
+              router.push(`/booked`);
             },
           };
         }}

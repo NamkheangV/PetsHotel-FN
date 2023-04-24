@@ -6,6 +6,7 @@ import React from "react";
 import { ProfileOutlined, HistoryOutlined } from "@ant-design/icons";
 import Profile from "@/components/setting/Profile.jsx";
 import History from "@/components/setting/History.jsx";
+import { useRouter } from "next/router";
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -19,23 +20,24 @@ function getItem(label, key, icon, children, type) {
 
 const { Content, Sider } = Layout;
 
-const items = [
-  {
-    title: "Profile",
-    key: "0",
-    icon: <ProfileOutlined />,
-    content: Profile(),
-  },
-  {
-    title: "History",
-    key: "1",
-    icon: <HistoryOutlined />,
-    content: History(),
-  },
-];
-
 export default function Setting() {
   const [current, setCurrent] = useState(0);
+  const router = useRouter();
+
+  const items = [
+    {
+      title: "Profile",
+      key: "0",
+      icon: <ProfileOutlined />,
+      content: Profile(),
+    },
+    {
+      title: "History",
+      key: "1",
+      icon: <HistoryOutlined />,
+      content: History(router),
+    },
+  ];
 
   // selected item to change content
   const selected = (e) => {

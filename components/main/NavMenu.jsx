@@ -2,7 +2,10 @@ import { Menu } from "antd";
 import { Link } from "react-scroll";
 import LogButton from "./LogButton";
 import Usermenu from "../user/Usermenu";
+import Adminmenu from "../admin/Adminmenu";
 import styles from "@/styles/Navbar.module.css";
+
+const status = "admin";
 
 export default function NavMenu() {
   return (
@@ -31,7 +34,13 @@ export default function NavMenu() {
       </Menu.Item>
 
       <Menu.Item key="login">
-        <Usermenu />
+        {status === "admin" ? (
+          <Adminmenu />
+        ) : status === "user" ? (
+          <Usermenu />
+        ) : (
+          <LogButton />
+        )}
       </Menu.Item>
     </Menu>
   );
