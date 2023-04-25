@@ -3,6 +3,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const Book_status = 1;
 
+const authstatus = "user";
+
 export default function AdConfirm() {
   return (
     <>
@@ -24,18 +26,26 @@ export default function AdConfirm() {
           status="pending"
           title="Your booking is pending"
           subTitle="Please wait for the confirmation from our staff."
-          extra={[
-            <Button type="primary" key="confirm">
-              Confirm
-            </Button>,
-            <Button
-              type="primary"
-              key="cancel"
-              style={{ backgroundColor: "red" }}
-            >
-              Cancelled
-            </Button>,
-          ]}
+          extra={
+            authstatus === "admin" ? (
+              [
+                <Button type="primary" key="confirm">
+                  Confirm
+                </Button>,
+                <Button
+                  type="primary"
+                  key="cancel"
+                  style={{ backgroundColor: "red" }}
+                >
+                  Cancelled
+                </Button>,
+              ]
+            ) : (
+              <Button type="primary" key="back">
+                Back to Home
+              </Button>
+            )
+          }
         />
       )}
     </>
