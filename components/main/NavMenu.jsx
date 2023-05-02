@@ -5,7 +5,7 @@ import Usermenu from "../user/Usermenu";
 import Adminmenu from "../admin/Adminmenu";
 import styles from "@/styles/Navbar.module.css";
 
-const status = "user";
+const status = "guess";
 
 export default function NavMenu() {
   return (

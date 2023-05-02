@@ -1,6 +1,6 @@
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
-import { Button, Input, Form, Divider } from "antd";
+import { Button, Input, Form, Divider, notification } from "antd";
 
 const onFinish = (values) => {
   console.log("Success:", values);
@@ -26,7 +26,7 @@ export default function Login() {
           autoComplete="off"
         >
           <Form.Item
-            id="username"
+            name="username"
             label="Username"
             rules={[
               {
@@ -39,7 +39,7 @@ export default function Login() {
           </Form.Item>
 
           <Form.Item
-            id="password"
+            name="password"
             label="Password"
             rules={[
               {
@@ -50,11 +50,19 @@ export default function Login() {
           >
             <Input.Password placeholder="abc123" />
           </Form.Item>
+
+          <Form.Item>
+            <Button
+              htmlType="submit"
+              className={styles.button}
+              block
+              style={{ width: "20em" }}
+            >
+              Login
+            </Button>
+          </Form.Item>
         </Form>
 
-        <Button className={styles.button} block>
-          Login
-        </Button>
         <Divider plain>or Login with</Divider>
         <GoogleLogin buttonText="Login with Google" />
       </div>

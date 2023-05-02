@@ -1,7 +1,8 @@
 import { Result, Button } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
-const Book_status = 1;
+const Book_status = 3;
 
 const authstatus = "user";
 
@@ -32,18 +33,14 @@ export default function AdConfirm() {
                 <Button type="primary" key="confirm">
                   Confirm
                 </Button>,
-                <Button
-                  type="primary"
-                  key="cancel"
-                  style={{ backgroundColor: "red" }}
-                >
+                <Button type="primary" style={{ backgroundColor: "red" }}>
                   Cancelled
                 </Button>,
               ]
             ) : (
-              <Button type="primary" key="back">
-                Back to Home
-              </Button>
+              <Link href="/">
+                <Button type="primary">Back to Home</Button>
+              </Link>
             )
           }
         />
