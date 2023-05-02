@@ -1,20 +1,56 @@
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
-import { Button, Input, Form, Divider, notification } from "antd";
-
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
+import { Button, Input, Form, Divider, message } from "antd";
+import { useState } from "react";
+import useAxios from "../lib/useAxios";
+import axios from "axios";
 
 export default function Login() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    const { username, password } = values;
+    handleLogin(username, password);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const handleLogin = async (user_id, user_pass) => {
+    setLoading(true);
+    try {
+      const res = await useAxios.post("/auth", {
+        user_id,
+        user_pass,
+      });
+      message.open({ type: "success", content: "Logged in successfully! 🎉" });
+      form.resetFields();
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      if (axios.isAxiosError(e)) {
+        const status = e.response?.status;
+        if (status === 404) {
+          setError("This username does not exist! 🤔");
+          message.open({
+            type: "error",
+            content: "This username does not exist! 😱",
+          });
+        } else if (status === 401) {
+          setError("Incorrect password");
+          message.open({ type: "error", content: "Incorrect password! 😱" });
+        } else setError("Something went wrong");
+      } else setError("Something went wrong.");
+    }
+  };
   return (
     <>
       <div className={styles.container}>
         <h1 className={styles.h1}>Login</h1>
         <Form
+          form={form}
           labelCol={{
             span: 8,
           }}
@@ -56,9 +92,9 @@ export default function Login() {
               htmlType="submit"
               className={styles.button}
               block
-              style={{ width: "20em" }}
+              style={{ width: "22em" }}
             >
-              Login
+              {loading ? "Loading..." : "Login"}
             </Button>
           </Form.Item>
         </Form>

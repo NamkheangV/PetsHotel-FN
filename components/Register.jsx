@@ -1,4 +1,4 @@
-import { Button, Input, Form, notification } from "antd";
+import { Button, Input, Form, message } from "antd";
 import styles from "@/styles/Register.module.css";
 import {
   MailOutlined,
@@ -8,11 +8,9 @@ import {
 } from "@ant-design/icons";
 import useAxios from "../lib/useAxios";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Register() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form] = Form.useForm();
@@ -21,7 +19,7 @@ export default function Register() {
     const { username, password, email, conpass } = values;
     if (password !== conpass) {
       setError("Passwords do not match");
-      notification.open({ message: "Passwords do not match", type: "error" });
+      message.open({ type: "error", content: "Passwords do not match! 😥" });
       return;
     } else {
       // console.log(values);
@@ -41,8 +39,7 @@ export default function Register() {
         user_pass,
         user_email,
       });
-      // console.log("Register data" + res);
-      notification.open({ message: "Register Success", type: "success" });
+      message.open({ type: "success", content: "Registered successfully! 😘" });
       form.resetFields();
       setLoading(false);
     } catch (e) {
@@ -51,10 +48,11 @@ export default function Register() {
         const status = e.response?.status;
         if (status === 409) {
           setError("This username is already taken");
-          notification.open({ message: "This username is already taken", type: "error" });
-        } else {
-          setError("Something went wrong");
-        }
+          message.open({
+            type: "error",
+            content: "This username is already taken!  😱 ",
+          });
+        } else setError("Something went wrong");
       } else setError("Something went wrong.");
     }
 
@@ -144,6 +142,8 @@ export default function Register() {
                 style={{ width: "20em" }}
               />
             </Form.Item>
+
+            <Form.Item></Form.Item>
 
             <Form.Item>
               <Button
