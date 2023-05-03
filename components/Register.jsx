@@ -6,7 +6,7 @@ import {
   LockOutlined,
   CheckOutlined,
 } from "@ant-design/icons";
-import useAxios from "../lib/useAxios";
+import useAxios from "@/lib/useAxios";
 import axios from "axios";
 import { useState } from "react";
 

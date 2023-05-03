@@ -17,9 +17,9 @@ export default function Adminmenu() {
   {
     label: <Link href="/">Logout</Link>,
     key: "1",
-    onClick: () => {
+    onClick: async () => {
       localStorage.removeItem("user");
-      Router.push("/");
+      await Router.push("/");
       Router.reload();
     },
   },

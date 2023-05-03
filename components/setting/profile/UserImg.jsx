@@ -1,7 +1,10 @@
-import { useState } from "react";
 import styles from "@/styles/Setting.module.css";
 import { Image, Row, Upload, Button, Modal, message, Card } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "@/lib/AppContext";
+import useAxios from "@/lib/useAxios";
+import axios from "axios";
 
 const props = {
   beforeUpload: (file) => {
@@ -17,15 +20,22 @@ const props = {
 };
 
 const UserImg = () => {
+  const {user} = useContext(GlobalContext);
+  const { user_id, user_image } = user;
+
+  const [error, setError] = useState("");
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  const handleOk = () => {};
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const handleImage = async (user_id, user_image) => {
+    
   };
 
   return (
@@ -42,7 +52,7 @@ const UserImg = () => {
             maxWidth: "300px",
           }}
         >
-          <Image className={styles.img} src="ProPic.png" />
+          <Image name="image" className={styles.img} src="ProPic.png" />
         </div>
         <Button type="primary" onClick={showModal}>
           Change Profile Image
