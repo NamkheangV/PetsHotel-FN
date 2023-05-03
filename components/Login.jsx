@@ -1,18 +1,21 @@
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
 import { Button, Input, Form, Divider, message } from "antd";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
 import useAxios from "../lib/useAxios";
+import { GlobalContext } from "@/lib/AppContext";
 import axios from "axios";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form] = Form.useForm();
+  const { setUser } = useContext(GlobalContext);
 
   const onFinish = (values) => {
-    const { username, password } = values;
-    handleLogin(username, password);
+    // const { username, password } = values;
+    // handleLogin(username, password);
+    setUser({ username: "admin", role: "admin"});
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -47,61 +50,60 @@ export default function Login() {
   };
   return (
     <>
-      <div className={styles.container}>
-        <h1 className={styles.h1}>Login</h1>
-        <Form
-          form={form}
-          labelCol={{
-            span: 8,
-          }}
-          wrapperCol={{
-            span: 18,
-          }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
-          <Form.Item
-            name="username"
-            label="Username"
-            rules={[
-              {
-                required: true,
-                message: "Please input username!",
-              },
-            ]}
+      <GlobalContext.Provider>
+        <div className={styles.container}>
+          <h1 className={styles.h1}>Login</h1>
+          <Form
+            form={form}
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 18,
+            }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            autoComplete="off"
           >
-            <Input placeholder="user123" />
-          </Form.Item>
-
-          <Form.Item
-            name="password"
-            label="Password"
-            rules={[
-              {
-                required: true,
-                message: "Please input password!",
-              },
-            ]}
-          >
-            <Input.Password placeholder="abc123" />
-          </Form.Item>
-
-          <Form.Item>
-            <Button
-              htmlType="submit"
-              className={styles.button}
-              block
-              style={{ width: "22em" }}
+            <Form.Item
+              name="username"
+              label="Username"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input username!",
+                },
+              ]}
             >
-              {loading ? "Loading..." : "Login"}
-            </Button>
-          </Form.Item>
-        </Form>
-
-        <Divider plain>or Login with</Divider>
-        <GoogleLogin buttonText="Login with Google" />
-      </div>
+              <Input placeholder="user123" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input password!",
+                },
+              ]}
+            >
+              <Input.Password placeholder="abc123" />
+            </Form.Item>
+            <Form.Item>
+              <Button
+                htmlType="submit"
+                className={styles.button}
+                block
+                style={{ width: "22em" }}
+              >
+                {loading ? "Loading..." : "Login"}
+              </Button>
+            </Form.Item>
+          </Form>
+          <Divider plain>or Login with</Divider>
+          <GoogleLogin buttonText="Login with Google" />
+        </div>
+      </GlobalContext.Provider>
     </>
   );
 }

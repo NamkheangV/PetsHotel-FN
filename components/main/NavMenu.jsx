@@ -4,10 +4,13 @@ import LogButton from "./LogButton";
 import Usermenu from "../user/Usermenu";
 import Adminmenu from "../admin/Adminmenu";
 import styles from "@/styles/Navbar.module.css";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "@/lib/AppContext";
 
 const status = "guess";
 
 export default function NavMenu() {
+  const { user } = useContext(GlobalContext);
   return (
     <Menu className={styles.menu} mode="horizontal" defaultSelectedKeys={["2"]}>
       <Menu.Item key="home">
