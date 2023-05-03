@@ -7,10 +7,9 @@ import styles from "@/styles/Navbar.module.css";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 
-const status = "guess";
-
 export default function NavMenu() {
   const { user } = useContext(GlobalContext);
+
   return (
     <Menu className={styles.menu} mode="horizontal" defaultSelectedKeys={["2"]}>
       <Menu.Item key="home">
@@ -37,9 +36,9 @@ export default function NavMenu() {
       </Menu.Item>
 
       <Menu.Item key="login">
-        {status === "admin" ? (
+        {user.user_type === 0 ? (
           <Adminmenu />
-        ) : status === "user" ? (
+        ) : user.user_type === 1 ? (
           <Usermenu />
         ) : (
           <LogButton />

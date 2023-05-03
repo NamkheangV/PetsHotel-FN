@@ -1,20 +1,29 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Row, Col, Dropdown, Typography } from "antd";
-import Admin from "./../../pages/adminService";
+import React, { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "@/lib/AppContext";
+import Link from "next/link";
+import Router from "next/router";
 
-const { Text } = Typography;
-const items = [
+export default function Adminmenu() {
+  const { user } = useContext(GlobalContext);
+
+  const { Text } = Typography;
+  const items = [
   {
-    label: <a href="/adminService">Service</a>,
+    label: <Link href="/adminService">Service</Link>,
     key: "0",
   },
   {
-    label: <a href="/">Logout</a>,
+    label: <Link href="/">Logout</Link>,
     key: "1",
+    onClick: () => {
+      localStorage.removeItem("user");
+      Router.push("/");
+      Router.reload();
+    },
   },
 ];
-
-export default function Adminmenu() {
   return (
     <>
       <Row gutter={25} style={{ marginLeft: "0 0 0 10px" }}>

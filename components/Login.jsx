@@ -1,6 +1,6 @@
 import styles from "@/styles/Login.module.css";
 import { GoogleLogin } from "react-google-login";
-import { Button, Input, Form, Divider, message } from "antd";
+import { Button, Input, Form, Divider, message, Spin } from "antd";
 import React, { useState, useContext } from "react";
 import useAxios from "../lib/useAxios";
 import { GlobalContext } from "@/lib/AppContext";
@@ -13,9 +13,8 @@ export default function Login() {
   const { setUser } = useContext(GlobalContext);
 
   const onFinish = (values) => {
-    // const { username, password } = values;
-    // handleLogin(username, password);
-    setUser({ username: "admin", role: "admin"});
+    const { username, password } = values;
+    handleLogin(username, password);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -31,6 +30,10 @@ export default function Login() {
       message.open({ type: "success", content: "Logged in successfully! 🎉" });
       form.resetFields();
       setLoading(false);
+
+      setUser(res.data);
+       // store cookie
+      localStorage.setItem("user", JSON.stringify(res.data));
     } catch (e) {
       setLoading(false);
       if (axios.isAxiosError(e)) {
@@ -96,7 +99,7 @@ export default function Login() {
                 block
                 style={{ width: "22em" }}
               >
-                {loading ? "Loading..." : "Login"}
+                {loading ? <Spin /> : "Login"}
               </Button>
             </Form.Item>
           </Form>

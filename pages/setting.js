@@ -42,7 +42,6 @@ export default function Setting() {
   // selected item to change content
   const selected = (e) => {
     setCurrent(e.key);
-    console.log(e.key);
   };
 
   const item = items.map((item) => ({

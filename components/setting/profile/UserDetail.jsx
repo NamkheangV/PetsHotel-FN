@@ -1,8 +1,13 @@
 import { Typography, Row, Col, Input, Form, Button } from "antd";
+import { useContext, useEffect } from "react";
+import { GlobalContext } from "@/lib/AppContext";
 
 const { Text } = Typography;
 
 export default function UserDetail() {
+  const { user } = useContext(GlobalContext);
+
+  useE
   return (
     <>
       <div>

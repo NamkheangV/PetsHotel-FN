@@ -1,4 +1,4 @@
-import { Button, Input, Form, message } from "antd";
+import { Button, Input, Form, message, Spin } from "antd";
 import styles from "@/styles/Register.module.css";
 import {
   MailOutlined,
@@ -22,7 +22,6 @@ export default function Register() {
       message.open({ type: "error", content: "Passwords do not match! 😥" });
       return;
     } else {
-      // console.log(values);
       handleRegister(username, password, email);
     }
   };
@@ -153,7 +152,7 @@ export default function Register() {
                 onClick={handleRegister}
                 style={{ width: "20em" }}
               >
-                {loading ? "Loading..." : "Register"}
+                {loading ? <Spin /> : "Register"}
               </Button>
             </Form.Item>
           </Form>
