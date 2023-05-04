@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import Link from "next/link";
 import Router from "next/router";
+import cookieCutter from 'cookie-cutter';
 
 export default function Adminmenu() {
   const { user } = useContext(GlobalContext);
@@ -18,7 +19,7 @@ export default function Adminmenu() {
     label: <Link href="/">Logout</Link>,
     key: "1",
     onClick: async () => {
-      localStorage.removeItem("user");
+      cookieCutter.set('user', null, {expires: new Date(0)});
       await Router.push("/");
       Router.reload();
     },

@@ -5,12 +5,13 @@ import React, { useState, useContext } from "react";
 import useAxios from "../lib/useAxios";
 import { GlobalContext } from "@/lib/AppContext";
 import axios from "axios";
+import cookieCutter from "cookie-cutter";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [form] = Form.useForm();
-  const { setUser } = useContext(GlobalContext);
+  const { user, setUser } = useContext(GlobalContext);
 
   const onFinish = (values) => {
     const { username, password } = values;
@@ -31,9 +32,17 @@ export default function Login() {
       form.resetFields();
       setLoading(false);
 
-      setUser(res.data);
-       // store cookie
-      localStorage.setItem("user", JSON.stringify(res.data));
+      // store cookie
+      cookieCutter.set("user", JSON.stringify(res.data));
+      useAxios
+        .get(`/users/${user_id}`)
+        .then((r) => {
+          // add user_image to user object
+          setUser({ ...res.data, user_image: r.data.user_image });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (e) {
       setLoading(false);
       if (axios.isAxiosError(e)) {

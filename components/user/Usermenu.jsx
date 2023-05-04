@@ -4,9 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import Link from "next/link";
 import Router from "next/router";
+import { bufferToUrl, bufferToBlobUrl } from "@/lib/Image";
+import cookieCutter from 'cookie-cutter';
+import useAxios from "@/lib/useAxios";
 
 export default function Usermenu() {
   const { user } = useContext(GlobalContext);
+  const { user_id, user_image } = user;
 
   const { Text } = Typography;
   const items = [
@@ -18,12 +22,13 @@ export default function Usermenu() {
     label: <Link href="/">Logout</Link>,
     key: "1",
     onClick: async () => {
-      localStorage.removeItem("user");
+      cookieCutter.set('user', null, {expires: new Date(0)});
       await Router.push("/");
       Router.reload();
     }
   },
-];
+  ];
+
 
   return (
     <>
@@ -39,7 +44,11 @@ export default function Usermenu() {
             placement="bottomRight"
             arrow
           >
-            <Avatar src="ProPic.png" size="large" icon={<UserOutlined />} />
+            <Avatar
+              src={(user_image && bufferToBlobUrl(user_image)) || <Spin />}
+              size="large"
+              icon={<UserOutlined />}
+            />
           </Dropdown>
         </Col>
       </Row>

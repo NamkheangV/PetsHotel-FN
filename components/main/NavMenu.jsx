@@ -36,10 +36,10 @@ export default function NavMenu() {
       </Menu.Item>
 
       <Menu.Item key="login">
-        {user.user_type === 0 ? (
-          <Adminmenu />
-        ) : user.user_type === 1 ? (
+        {user.user_type === 1 ? (
           <Usermenu />
+        ) : user.user_type === 0 ? (
+          <Adminmenu />
         ) : (
           <LogButton />
         )}

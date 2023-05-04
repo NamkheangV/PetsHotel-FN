@@ -1,22 +1,15 @@
-import {
-  Typography,
-  Row,
-  Col,
-  Input,
-  Form,
-  Button,
-  message,
-  Spin,
-} from "antd";
+import { Typography, Row, Col, Input, Form, Button, message, Spin } from "antd";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import useAxios from "@/lib/useAxios";
 import axios from "axios";
+import cookieCutter from "cookie-cutter";
+import { Router } from "next/router";
 
 const { Text } = Typography;
 
 export default function UserDetail() {
-  const { user } = useContext(GlobalContext);
+  const { user, setUser } = useContext(GlobalContext);
   const { user_id, user_fname, user_lname, user_email, user_phone } = user;
 
   const [loading, setLoading] = useState(false);
@@ -59,7 +52,17 @@ export default function UserDetail() {
         user_phone,
       });
       message.open({ type: "success", content: "Updated successfully! 🎉" });
-      localStorage.setItem("user", JSON.stringify(res.data));
+      useAxios
+        .get(`/users/${user_id}`)
+        .then((r) => {
+          const { user_image, ...userWithoutImg } = r.data;
+          cookieCutter.set("user", JSON.stringify(userWithoutImg));
+          console.log("ress" , r.data);
+          setUser({ ...r.data, user_image: r.data.user_image });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setLoading(false);
     } catch (e) {
       setLoading(false);

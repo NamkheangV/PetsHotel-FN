@@ -12,6 +12,7 @@
     "@ant-design/icons": "^5.0.1",
     "antd": "^5.3.3",
     "axios": "^1.4.0",
+    "cookie-cutter": "^0.2.0",
     "gapi-script": "^1.2.0",
     "next": "13.2.4",
     "next-auth": "^4.22.0",

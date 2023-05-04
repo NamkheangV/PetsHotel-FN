@@ -1,26 +1,27 @@
 import styles from "@/styles/Setting.module.css";
-import { Image, Row, Upload, Button, Modal, message, Card } from "antd";
+import { Image, Row, Upload, Button, Modal, message, Spin } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import useAxios from "@/lib/useAxios";
 import axios from "axios";
-import { bufferToUrl, bufferToBlobUrl } from '@/lib/Image';
+import { bufferToUrl, bufferToBlobUrl } from "@/lib/Image";
+import Router from "next/router";
 
 const UserImg = () => {
-  const {user} = useContext(GlobalContext);
+  const [loading, setLoading] = useState(false);
+  const { user } = useContext(GlobalContext);
   const { user_id, user_image } = user;
+  const [error, setError] = useState("");
 
   const [file, setFile] = useState(null);
-
-  const [error, setError] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
-    const { user_id,  } = user;
+    const { user_id } = user;
     handleImage(user_id);
   };
   const handleCancel = () => {
@@ -28,6 +29,7 @@ const UserImg = () => {
   };
 
   const handleImage = async () => {
+    setLoading(true);
     const formData = new FormData();
     formData.append("user_img", file);
     try {
@@ -36,6 +38,8 @@ const UserImg = () => {
       setIsModalOpen(false);
 
       console.log(res);
+      setLoading(false);
+      Router.reload();
     } catch (e) {
       if (axios.isAxiosError(e)) {
         const status = e.response?.status;
@@ -49,27 +53,25 @@ const UserImg = () => {
       } else setError("Something went wrong.");
     }
   };
-  
 
   const props = {
-  beforeUpload: (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    if (!isJpgOrPng) {
-      message.error(`${file.name} IS NOT FILE IMAGE!`);
-    }
-    return isJpgOrPng || Upload.LIST_IGNORE;
-  },
-  onChange: (info) => {
-    console.log(info.fileList);
-    const { status } = info.file;
-    if (status === "done") {
-      message.success(`${info.file.name} file uploaded successfully.`);
-      setFile (info.file.originFileObj);
-    } else if (status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
+    beforeUpload: (file) => {
+      const isJpgOrPng =
+        file.type === "image/jpeg" || file.type === "image/png";
+      if (!isJpgOrPng) {
+        message.error(`${file.name} IS NOT FILE IMAGE!`);
+      }
+      return isJpgOrPng || Upload.LIST_IGNORE;
+    },
+    onChange: (info) => {
+      console.log(info.fileList);
+      const { status } = info.file;
+      if (status === "done") {
+        message.success(`${info.file.name} file uploaded successfully.`);
+        setFile(info.file.originFileObj);
+      }
+    },
+  };
 
   return (
     <>
@@ -85,7 +87,10 @@ const UserImg = () => {
             maxWidth: "300px",
           }}
         >
-          <Image name="image" className={styles.img} src="ProPic.png" />
+          <Image
+            className={styles.img}
+            src={(user_image && bufferToBlobUrl(user_image)) || <Spin />}
+          />
         </div>
         <Button type="primary" onClick={showModal}>
           Change Profile Image
@@ -107,11 +112,15 @@ const UserImg = () => {
             alignItems: "center",
           }}
         >
-          <Upload {...props} listType="picture" className="upload-list-inline">
-            <Button icon={<UploadOutlined />}>
-              Edit Your Profile Image 🥰
-            </Button>
-          </Upload>
+          {loading ? (
+            <Spin />
+          ) : (
+            <Upload {...props}>
+              <Button icon={<UploadOutlined />}>
+                Edit Your Profile Image 🥰
+              </Button>
+            </Upload>
+          )}
         </div>
       </Modal>
     </>
