@@ -5,50 +5,61 @@ import {
   Radio,
   DatePicker,
   InputNumber,
-  Upload,
   Row,
   Col,
   message,
+  Button,
+  Tooltip
 } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import styles from "@/styles/Booking.module.css";
+import DownloadOutlined from "@ant-design/icons/DownloadOutlined";
 
 const { RangePicker } = DatePicker;
-const props = {
-  beforeUpload: (file) => {
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-    if (!isJpgOrPng) {
-      message.error(`${file.name} IS NOT FILE IMAGE!`);
-    }
-    return isJpgOrPng || Upload.LIST_IGNORE;
-  },
-  onChange: (info) => {
-    console.log(info.fileList);
-  },
-};
 
 export default function InfoForm() {
+  const onFinish = (values) => {};
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <div className={styles.container}>
-      <Form size="large" labelCol={{ span: 8 }}>
+      <Form
+        size="large"
+        labelCol={{ span: 8 }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Row style={{ justifyContent: "end" }}>
+          <Form.Item>
+            <Tooltip title="Save information">
+              <Button htmlType="submit" shape="circle">
+                <DownloadOutlined />
+              </Button>
+            </Tooltip>
+          </Form.Item>
+        </Row>
+
         <Row gutter={100}>
           <Col span={12}>
-            <Form.Item label="Firstname">
+            <Form.Item label="Firstname" name="cus_fname">
               <Input placeholder="Suchanart" />
             </Form.Item>
 
-            <Form.Item label="Contact">
+            <Form.Item label="Contact" name="cus_contact">
               <Input placeholder="091-234-5678" />
             </Form.Item>
 
-            <Form.Item label="Breed">
+            <Form.Item label="Breed" name="breed">
               <Radio.Group>
                 <Radio value="male"> Dog </Radio>
                 <Radio value="female"> Cat </Radio>
               </Radio.Group>
             </Form.Item>
 
-            <Form.Item label="Room Type">
+            <Form.Item label="Room Type" name="roomtype">
               <Select placeholder="Select Room Type">
                 <Select.Option value="1">The Standart</Select.Option>
                 <Select.Option value="2">The Deluxe</Select.Option>
@@ -63,33 +74,24 @@ export default function InfoForm() {
 
           {/* Right */}
           <Col span={12}>
-            <Form.Item label="Lastname">
+            <Form.Item label="Lastname" name="cus_lname">
               <Input placeholder="Khumbungkhla" />
             </Form.Item>
 
-            <Form.Item label="Pet(s)">
+            <Form.Item label="Pet(s)" name="petamount ">
               <InputNumber placeholder="0" min={1} max={3} />
             </Form.Item>
 
-            <Form.Item label="Pet name">
+            <Form.Item label="Pet name" name="pet_name">
               <Input placeholder="Moon, Sunshine, Pepermint" />
             </Form.Item>
 
-            <Form.Item label="Check IN-OUT">
+            <Form.Item label="Check IN-OUT" name="checkdate">
               <RangePicker />
             </Form.Item>
           </Col>
         </Row>
       </Form>
-
-      <Form.Item label="Pet Image" valuePropName="fileList">
-        <Upload {...props} listType="picture-card" maxCount={3}>
-          <div>
-            <PlusOutlined />
-            <div>Upload</div>
-          </div>
-        </Upload>
-      </Form.Item>
     </div>
   );
 }

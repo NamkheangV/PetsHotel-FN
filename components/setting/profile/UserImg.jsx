@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import useAxios from "@/lib/useAxios";
 import axios from "axios";
-import { bufferToUrl, bufferToBlobUrl } from "@/lib/Image";
+import { bufferToBlobUrl } from "@/lib/Image";
 import Router from "next/router";
 
 const UserImg = () => {
@@ -92,7 +92,7 @@ const UserImg = () => {
             src={(user_image && bufferToBlobUrl(user_image)) || <Spin />}
           />
         </div>
-        <Button type="primary" onClick={showModal}>
+        <Button type="primary" onClick={showModal} style={{marginTop: 10}}>
           Change Profile Image
         </Button>
       </Row>
@@ -115,7 +115,7 @@ const UserImg = () => {
           {loading ? (
             <Spin />
           ) : (
-            <Upload {...props}>
+            <Upload {...props} maxCount={1} >
               <Button icon={<UploadOutlined />}>
                 Edit Your Profile Image 🥰
               </Button>

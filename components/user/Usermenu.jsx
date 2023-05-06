@@ -1,12 +1,11 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Row, Col, Dropdown, Typography } from "antd";
+import { Avatar, Row, Col, Dropdown, Typography, Spin } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import Link from "next/link";
 import Router from "next/router";
-import { bufferToUrl, bufferToBlobUrl } from "@/lib/Image";
+import { bufferToBlobUrl } from "@/lib/Image";
 import cookieCutter from 'cookie-cutter';
-import useAxios from "@/lib/useAxios";
 
 export default function Usermenu() {
   const { user } = useContext(GlobalContext);

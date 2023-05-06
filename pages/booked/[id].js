@@ -2,32 +2,34 @@ import Head from "next/head";
 import styles from "@/styles/Booking.module.css";
 import { useState } from "react";
 import { Button, Steps } from "antd";
+import useAxios from "@/lib/useAxios";
 import AdInFo from "@/components/admin/booked/AdInfo";
 import AdRecp from "@/components/admin/booked/AdRecp";
 import AdPaym from "@/components/admin/booked/AdPaym";
 import AdConfirm from "@/components/admin/booked/AdConfirm";
 
-const steps = [
-  {
-    title: "Information",
-    content: AdInFo(),
-  },
-  {
-    title: "Receipt",
-    content: AdRecp(),
-  },
-  {
-    title: "Payment",
-    content: AdPaym(),
-  },
-  {
-    title: "Confirmation",
-    content: AdConfirm(),
-  },
-];
-
-export default function Booked() {
+export default function Booked({ data }) {
   const [current, setCurrent] = useState(0);
+
+  const steps = [
+    {
+      title: "Information",
+      content: AdInFo({ data }),
+    },
+    {
+      title: "Receipt",
+      content: AdRecp({ data }),
+    },
+    {
+      title: "Payment",
+      content: AdPaym({ data }),
+    },
+    {
+      title: "Confirmation",
+      content: AdConfirm({ data }),
+    },
+  ];
+
   const next = () => {
     setCurrent(current + 1);
   };
@@ -68,4 +70,16 @@ export default function Booked() {
       </div>
     </>
   );
+}
+
+// getServerSideProps
+export async function getServerSideProps({ params: { id } }) {
+  const res = await useAxios.get(`/booking/${id}`);
+  const data = await res.data;
+console.log(data);
+  return {
+    props: {
+      data,
+    },
+  };
 }

@@ -1,4 +1,9 @@
-import { Table, Tag, Empty } from "antd";
+import { Table, Tag } from "antd";
+import { useRouter } from "next/router";
+import useAxios from "@/lib/useAxios";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import formatDate from "@/lib/Date";
 
 const header = [
   {
@@ -38,58 +43,12 @@ const data = [
     petAmount: "2",
     status: "Confirmed",
   },
-  {
-    key: "2",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Cancelled",
-  },
-  {
-    key: "3",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "4",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "5",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "6",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "7",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
-  {
-    key: "8",
-    date: "22-02-2021 to 22-02-2021",
-    roomType: "Deluxe",
-    petAmount: "2",
-    status: "Pending",
-  },
+  
 ];
 
-export default function History(router) {
+export default function History() {
+  const router = useRouter();
+
   return (
     <>
       <Table
@@ -101,7 +60,7 @@ export default function History(router) {
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {
-              router.push(`/booked`);
+              router.push(`/booked/`);
             },
           };
         }}

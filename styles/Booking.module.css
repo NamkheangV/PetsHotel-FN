@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-around;
     height: 500px;
-    padding: 25px 0 8px 0;
+    width: 80%;
 }
 
 .content {

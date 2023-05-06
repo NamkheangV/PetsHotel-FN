@@ -7,7 +7,10 @@ import PaymForm from "@/components/booking/PaymentForm.jsx";
 import ReceiptForm from "@/components/booking/ReceiptForm";
 import Wait from "@/components/booking/Wait";
 
-const steps = [
+export default function Booking() {
+  const [current, setCurrent] = useState(0);
+
+  const steps = [
   {
     title: "Information",
     content: InfoForm(),
@@ -25,9 +28,6 @@ const steps = [
     content: Wait(),
   },
 ];
-
-export default function Booking() {
-  const [current, setCurrent] = useState(0);
   const next = () => {
     setCurrent(current + 1);
   };

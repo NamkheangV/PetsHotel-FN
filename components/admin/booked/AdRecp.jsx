@@ -1,21 +1,36 @@
 import { Divider, Row, Col, Typography, Image } from "antd";
 import styles from "@/styles/Booking.module.css";
+import formatDate from "@/lib/Date";
+import { differenceInDays } from 'date-fns';
 
 const { Text } = Typography;
 
-export default function AdRecp() {
+export default function AdRecp({ data }) {
+  // get only date
+  const getDays = (date) => {
+    const days = differenceInDays(
+      new Date(date.checkout_date),
+      new Date(data.checkin_date)
+    );
+    return days;
+  };
+  
+  
+
   return (
     <div className={styles.receipt}>
       <Row>
         <Col span={12}>
-          <h2>Customer Name </h2>
-          <Text>RECEIPT ID : #0012354</Text>
+          <h2>
+            {data.bk_cus_fname} {data.bk_cus_lname}
+          </h2>
+          <Text>RECEIPT ID : #{data.bk_id}</Text>
         </Col>
         <Col span={6}>
-          <Text>CHECK-IN : 26 - 04 - 2003</Text>
+          <Text>CHECK-IN : {formatDate(data.checkin_date)}</Text>
         </Col>
         <Col span={6}>
-          <Text>CHECK-OUT : 26 - 04 - 2003</Text>
+          <Text>CHECK-OUT : {formatDate(data.checkout_date)}</Text>
         </Col>
       </Row>
 
@@ -41,13 +56,15 @@ export default function AdRecp() {
         {/* Your Booking */}
         <Row style={{ marginTop: "40px" }}>
           <Col span={6} className={styles.col}>
-            <Text>Standard</Text>
+            <Text>{data.room_type}</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>6</Text>
+            <Text>
+              {getDays(data)} 
+            </Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>600</Text>
+
           </Col>
           <Col span={6} className={styles.col}>
             <Text>500 Baht</Text>

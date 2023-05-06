@@ -149,7 +149,6 @@ export default function Register() {
                 htmlType="submit"
                 className={styles.button}
                 block
-                onClick={handleRegister}
                 style={{ width: "20em" }}
               >
                 {loading ? <Spin /> : "Register"}

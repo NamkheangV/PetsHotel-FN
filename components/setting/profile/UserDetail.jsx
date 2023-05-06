@@ -4,7 +4,6 @@ import { GlobalContext } from "@/lib/AppContext";
 import useAxios from "@/lib/useAxios";
 import axios from "axios";
 import cookieCutter from "cookie-cutter";
-import { Router } from "next/router";
 
 const { Text } = Typography;
 

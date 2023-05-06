@@ -1,13 +1,15 @@
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar, Row, Col, Dropdown, Typography } from "antd";
+import { Avatar, Row, Col, Dropdown, Typography, Spin } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import Link from "next/link";
 import Router from "next/router";
+import { bufferToBlobUrl } from "@/lib/Image";
 import cookieCutter from 'cookie-cutter';
 
 export default function Adminmenu() {
   const { user } = useContext(GlobalContext);
+  const { user_id, user_image } = user;
 
   const { Text } = Typography;
   const items = [
@@ -39,7 +41,11 @@ export default function Adminmenu() {
             placement="bottomRight"
             arrow
           >
-            <Avatar src="admin.jpg" size="large" icon={<UserOutlined />} />
+            <Avatar
+              src={(user_image && bufferToBlobUrl(user_image)) || <Spin />}
+              size="large"
+              icon={<UserOutlined />}
+            />
           </Dropdown>
         </Col>
       </Row>
