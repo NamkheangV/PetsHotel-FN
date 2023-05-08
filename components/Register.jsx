@@ -1,5 +1,5 @@
 import { Button, Input, Form, message, Spin } from "antd";
-import styles from "@/styles/Register.module.css";
+import styles from "@/styles/register.module.css";
 import {
   MailOutlined,
   UserOutlined,
