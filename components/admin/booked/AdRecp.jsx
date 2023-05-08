@@ -1,11 +1,14 @@
 import { Divider, Row, Col, Typography, Image } from "antd";
 import styles from "@/styles/Booking.module.css";
 import formatDate from "@/lib/Date";
-import { differenceInDays } from 'date-fns';
+import { differenceInDays } from "date-fns";
+import { useState, useEffect } from "react";
 
 const { Text } = Typography;
 
-export default function AdRecp({ data }) {
+export default function AdRecp({ data, room }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   // get only date
   const getDays = (date) => {
     const days = differenceInDays(
@@ -14,8 +17,16 @@ export default function AdRecp({ data }) {
     );
     return days;
   };
-  
-  
+
+  const [price, setPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
+
+  useEffect(() => {
+    setPrice(room.room_price * getDays(data));
+    setDiscount(
+      data.user_id !== "" ? room.room_price * getDays(data) * 0.1 : 0
+    );
+  }, [data, room]);
 
   return (
     <div className={styles.receipt}>
@@ -56,18 +67,16 @@ export default function AdRecp({ data }) {
         {/* Your Booking */}
         <Row style={{ marginTop: "40px" }}>
           <Col span={6} className={styles.col}>
-            <Text>{data.room_type}</Text>
+            <Text>{room.room_type}</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>
-              {getDays(data)} 
-            </Text>
+            <Text>{getDays(data)}</Text>
           </Col>
           <Col span={6} className={styles.col}>
-
+            <Text>{room.room_price} Baht</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>500 Baht</Text>
+            <Text>{price}</Text>
           </Col>
         </Row>
 
@@ -80,7 +89,7 @@ export default function AdRecp({ data }) {
             <Text style={{ color: "grey" }}>SUBTOTAL</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>500 Baht</Text>
+            <Text>{price}</Text>
           </Col>
         </Row>
 
@@ -91,7 +100,7 @@ export default function AdRecp({ data }) {
             <Text style={{ color: "grey" }}>DISCOUNT 10%</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>50 Baht</Text>
+            <Text>{discount}</Text>
           </Col>
         </Row>
 
@@ -104,7 +113,7 @@ export default function AdRecp({ data }) {
             <Text>TOTAL</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <h2>450 Baht</h2>
+            <h2>{price - discount}</h2>
           </Col>
         </Row>
       </div>

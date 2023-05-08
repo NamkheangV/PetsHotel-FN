@@ -8,7 +8,7 @@ import styles from "@/styles/Booked.module.css";
 import { useEffect } from "react";
 import formatDate from "@/lib/Date";
 
-export default function AdInFo({ data }) {
+export default function AdInFo({ data, room }) {
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function AdInFo({ data }) {
       petamount: data.bk_pet_amount+"",
       pet_name: data.bk_pet_name,
       breed: data.bk_pet_breed,
-      roomtype: data.room_type,
+      roomtype: room.room_type,
       checkdate: `${formatDate(data.checkin_date)} - ${formatDate( data.checkout_date)}`,
     });
   }, [data]);

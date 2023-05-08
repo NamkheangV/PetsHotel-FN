@@ -112,7 +112,7 @@ export default function Admin() {
             return {
               onClick: (event) => {
                 router.push(`/booked/${record.bk_id}`);
-                document.getElementById("__NEXT_DATA__").text;
+                console.log(record);
               },
             };
           }}

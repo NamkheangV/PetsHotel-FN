@@ -9,15 +9,134 @@ import {
   Col,
   message,
   Button,
-  Tooltip
+  Tooltip,
+  Spin,
 } from "antd";
 import styles from "@/styles/Booking.module.css";
 import DownloadOutlined from "@ant-design/icons/DownloadOutlined";
+import useAxios from "@/lib/useAxios";
+import axios from "axios";
+import { useState, useEffect, useContext } from "react";
+import { GlobalContext } from "@/lib/AppContext";
 
 const { RangePicker } = DatePicker;
 
-export default function InfoForm() {
-  const onFinish = (values) => {};
+export default function InfoForm({setBookingData}) {
+  const { user } = useContext(GlobalContext);
+  const { user_id } = user 
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [roomType, setRoomType] = useState([]);
+  const [roomTypeSet, setRoomTypeSet] = useState([]);
+
+  useEffect(() => {
+    fetchRoomType();
+  }, []);
+
+  useEffect(() => {
+    if (roomType.length > 0) {
+      // console.log({ roomType });
+      const roomTypeName = roomType.map((item) => item.room_type);
+      const roomTypeSet = new Set(roomTypeName);
+
+      setRoomTypeSet([...roomTypeSet]);
+      // console.log(roomTypeSet);
+    }
+  }, [roomType]);
+
+  const fetchRoomType = async () => {
+    try {
+      const res = await useAxios.get("/rooms");
+      setRoomType(res.data);
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const status = e.response?.status;
+        if (status === 409) {
+          setError("This username is already taken");
+        } else setError("Something went wrong");
+      }
+    }
+  };
+
+  const onFinish = (values) => { 
+    const {
+      cus_fname,
+      cus_lname,
+      cus_contact,
+      petamount,
+      breed,
+      pet_name,
+      checkdate,
+      roomtype,
+    } = values;
+    // transform array date to string
+    const checkin_date = checkdate[0].format("YYYY/MM/DD");
+    const checkout_date = checkdate[1].format("YYYY/MM/DD");
+   
+    // console.log(values);
+
+    const room_id = roomType.find(
+      (item) => item.room_type === roomtype
+    ).room_id;
+
+    handleSave(
+      cus_fname,
+      cus_lname,
+      cus_contact,
+      petamount,
+      breed,
+      pet_name,
+      checkin_date,
+      checkout_date,
+      room_id
+    );
+  };
+
+  const handleSave = async (
+    bk_cus_fname,
+    bk_cus_lname,
+    bk_cus_phone,
+    bk_pet_amount,
+    bk_pet_breed,
+    bk_pet_name,
+    checkin_date,
+    checkout_date,
+    room_id
+  ) => {
+    setLoading(true);
+    try {
+      const res = await useAxios.post("/booking", {
+        bk_cus_fname,
+        bk_cus_lname,
+        bk_cus_phone,
+        bk_pet_amount,
+        bk_pet_breed,
+        bk_pet_name,
+        checkin_date,
+        checkout_date,
+        room_id,
+        user_id: user_id,
+      });
+      setBookingData(res.data);
+      console.log("setBookingData", res.data);
+      message.open({ type: "success", content: "Booking successfully! 😘" });
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      if (axios.isAxiosError(e)) {
+        const status = e.response?.status;
+        if (status === 409) {
+          setError("This username is already taken");
+          message.open({
+            type: "error",
+            content: "This username is already taken!  😱 ",
+          });
+        } else setError("Something went wrong");
+      } else setError("Something went wrong.");
+    }
+  };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -36,7 +155,7 @@ export default function InfoForm() {
           <Form.Item>
             <Tooltip title="Save information">
               <Button htmlType="submit" shape="circle">
-                <DownloadOutlined />
+                {loading ? <Spin /> : <DownloadOutlined />}
               </Button>
             </Tooltip>
           </Form.Item>
@@ -54,20 +173,17 @@ export default function InfoForm() {
 
             <Form.Item label="Breed" name="breed">
               <Radio.Group>
-                <Radio value="male"> Dog </Radio>
-                <Radio value="female"> Cat </Radio>
+                <Radio value="Dog"> Dog </Radio>
+                <Radio value="Cat"> Cat </Radio>
               </Radio.Group>
             </Form.Item>
 
             <Form.Item label="Room Type" name="roomtype">
               <Select placeholder="Select Room Type">
-                <Select.Option value="1">The Standart</Select.Option>
-                <Select.Option value="2">The Deluxe</Select.Option>
-                <Select.Option value="3">The Suite</Select.Option>
-                <Select.Option value="4">The Condo (Cat only)</Select.Option>
-                <Select.Option value="5">
-                  The Suite Condo (Cat only)
-                </Select.Option>
+                {roomTypeSet &&
+                  roomTypeSet.map((item) => (
+                    <Select.Option value={item}>{item}</Select.Option>
+                  ))}
               </Select>
             </Form.Item>
           </Col>
@@ -78,7 +194,7 @@ export default function InfoForm() {
               <Input placeholder="Khumbungkhla" />
             </Form.Item>
 
-            <Form.Item label="Pet(s)" name="petamount ">
+            <Form.Item label="Pet(s)" name="petamount">
               <InputNumber placeholder="0" min={1} max={3} />
             </Form.Item>
 

@@ -8,25 +8,29 @@ import AdRecp from "@/components/admin/booked/AdRecp";
 import AdPaym from "@/components/admin/booked/AdPaym";
 import AdConfirm from "@/components/admin/booked/AdConfirm";
 
-export default function Booked({ data }) {
+export default function Booked({ data, room }) {
   const [current, setCurrent] = useState(0);
 
   const steps = [
     {
+      key: "info",
       title: "Information",
-      content: AdInFo({ data }),
+      content: AdInFo({ data, room }),
     },
     {
+      key: "receipt",
       title: "Receipt",
-      content: AdRecp({ data }),
+      content: AdRecp({ data, room }),
     },
     {
+      key: "payment",
       title: "Payment",
       content: AdPaym({ data }),
     },
     {
+      key: "confirm",
       title: "Confirmation",
-      content: AdConfirm({ data }),
+      content: AdConfirm({ data, room }),
     },
   ];
 
@@ -76,10 +80,14 @@ export default function Booked({ data }) {
 export async function getServerSideProps({ params: { id } }) {
   const res = await useAxios.get(`/booking/${id}`);
   const data = await res.data;
-console.log(data);
+  // console.log(data);
+  const res2 = await useAxios.get(`/rooms/${data.room_id}`);
+  const room = await res2.data;
+  // console.log(room);
   return {
     props: {
       data,
+      room,
     },
   };
 }

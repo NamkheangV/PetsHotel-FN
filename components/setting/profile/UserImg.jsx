@@ -1,7 +1,7 @@
 import styles from "@/styles/Setting.module.css";
 import { Image, Row, Upload, Button, Modal, message, Spin } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import useAxios from "@/lib/useAxios";
 import axios from "axios";
@@ -36,8 +36,7 @@ const UserImg = () => {
       const res = await useAxios.put(`/users/${user_id}`, formData);
       message.success("Update Profile Image Successfully");
       setIsModalOpen(false);
-
-      console.log(res);
+      // console.log(res);
       setLoading(false);
       Router.reload();
     } catch (e) {
@@ -64,7 +63,7 @@ const UserImg = () => {
       return isJpgOrPng || Upload.LIST_IGNORE;
     },
     onChange: (info) => {
-      console.log(info.fileList);
+      // console.log(info.fileList);
       const { status } = info.file;
       if (status === "done") {
         message.success(`${info.file.name} file uploaded successfully.`);
@@ -92,7 +91,7 @@ const UserImg = () => {
             src={(user_image && bufferToBlobUrl(user_image)) || <Spin />}
           />
         </div>
-        <Button type="primary" onClick={showModal} style={{marginTop: 10}}>
+        <Button type="primary" onClick={showModal} style={{ marginTop: 10 }}>
           Change Profile Image
         </Button>
       </Row>
@@ -115,7 +114,7 @@ const UserImg = () => {
           {loading ? (
             <Spin />
           ) : (
-            <Upload {...props} maxCount={1} >
+            <Upload {...props} maxCount={1}>
               <Button icon={<UploadOutlined />}>
                 Edit Your Profile Image 🥰
               </Button>

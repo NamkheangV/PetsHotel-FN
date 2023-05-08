@@ -1,35 +1,19 @@
-import { Divider, Row, Col, Typography, message } from "antd";
+import { Divider, Row, Col, Typography, Image } from "antd";
 import styles from "@/styles/Booking.module.css";
-import { use, useEffect, useState } from "react";
-import useAxios from "@/lib/useAxios";
-import axios from "axios";
-import { differenceInDays } from "date-fns";
 import formatDate from "@/lib/Date";
+import { differenceInDays } from 'date-fns';
+import { useState, useEffect} from "react";
 
 const { Text } = Typography;
 
-export default function ReceiptForm({ bookingData }) {
-  const { bk_id, checkin_date, checkout_date, room_id } = bookingData;
-
-  const [roomDetail, setRoomDetail] = useState([]);
-
-  useEffect(() => {
-    fetchRoom();
-  }, [bookingData]);
-
-  const fetchRoom = async () => {
-    try {
-      const res = await useAxios.get(`/rooms/${room_id}`);
-      setRoomDetail(res.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
+export default function AdRecp({ data, room }) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  // get only date
   const getDays = (date) => {
     const days = differenceInDays(
-      new Date(checkout_date),
-      new Date(checkin_date)
+      new Date(date.checkout_date),
+      new Date(data.checkin_date)
     );
     return days;
   };
@@ -37,27 +21,25 @@ export default function ReceiptForm({ bookingData }) {
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
 
-  useEffect(() => {
-    setPrice(roomDetail.room_price * getDays(bookingData));
-    setDiscount(
-      bookingData.user_id !== ""
-        ? roomDetail.room_price * getDays(bookingData) * 0.1
-        : 0
-    );
-  }, [bookingData, roomDetail]);
+  useEffect(() => { 
+    setPrice(room.room_price * getDays(data));
+    setDiscount(data.user_id !== "" ? (room.room_price * getDays(data)) * 0.1 : 0);
+   }, [data, room]);
 
   return (
     <div className={styles.receipt}>
       <Row>
         <Col span={12}>
-          <h2>Customer Name </h2>
-          <Text>RECEIPT ID : #{bk_id}</Text>
+          <h2>
+            {data.bk_cus_fname} {data.bk_cus_lname}
+          </h2>
+          <Text>RECEIPT ID : #{data.bk_id}</Text>
         </Col>
         <Col span={6}>
-          <Text>CHECK-IN : {formatDate(checkin_date)}</Text>
+          <Text>CHECK-IN : {formatDate(data.checkin_date)}</Text>
         </Col>
         <Col span={6}>
-          <Text>CHECK-OUT : {formatDate(checkout_date)}</Text>
+          <Text>CHECK-OUT : {formatDate(data.checkout_date)}</Text>
         </Col>
       </Row>
 
@@ -83,16 +65,20 @@ export default function ReceiptForm({ bookingData }) {
         {/* Your Booking */}
         <Row style={{ marginTop: "40px" }}>
           <Col span={6} className={styles.col}>
-            <Text>{roomDetail.room_type}</Text>
+            <Text>{room.room_type}</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>{getDays(bookingData)}</Text>
+            <Text>
+              {getDays(data)} 
+            </Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>{roomDetail.room_price}</Text>
+            <Text>{room.room_price} Baht</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>{price}</Text>
+            <Text>
+              {price}
+            </Text>
           </Col>
         </Row>
 
@@ -105,7 +91,9 @@ export default function ReceiptForm({ bookingData }) {
             <Text style={{ color: "grey" }}>SUBTOTAL</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>{price}</Text>
+            <Text>
+              {price}
+            </Text>
           </Col>
         </Row>
 
@@ -116,7 +104,9 @@ export default function ReceiptForm({ bookingData }) {
             <Text style={{ color: "grey" }}>DISCOUNT 10%</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <Text>{discount}</Text>
+            <Text>
+              {discount}
+            </Text>
           </Col>
         </Row>
 
@@ -129,7 +119,9 @@ export default function ReceiptForm({ bookingData }) {
             <Text>TOTAL</Text>
           </Col>
           <Col span={6} className={styles.col}>
-            <h2>{price - discount}</h2>
+            <h2>
+              {price - discount}
+            </h2>
           </Col>
         </Row>
       </div>

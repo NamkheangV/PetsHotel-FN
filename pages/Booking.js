@@ -10,30 +10,35 @@ import Wait from "@/components/booking/Wait";
 export default function Booking() {
   const [current, setCurrent] = useState(0);
 
+  const [bookingData, setBookingData] = useState([]);
+
   const steps = [
-  {
-    title: "Information",
-    content: InfoForm(),
-  },
-  {
-    title: "Receipt",
-    content: ReceiptForm(),
-  },
-  {
-    title: "Payment",
-    content: PaymForm(),
-  },
-  {
-    title: "Confirmation",
-    content: Wait(),
-  },
-];
+    {
+      key: "info",
+      title: "Information",
+      content: InfoForm({ setBookingData }),
+    },
+    {
+      key: "receipt",
+      title: "Receipt",
+      content: ReceiptForm({ bookingData }),
+    },
+    {
+      key: "payment",
+      title: "Payment",
+      content: PaymForm({ bookingData }),
+    },
+    {
+      key: "confirm",
+      title: "Confirmation",
+      content: Wait(),
+    },
+  ];
+  
   const next = () => {
     setCurrent(current + 1);
   };
-  const prev = () => {
-    setCurrent(current - 1);
-  };
+
   const items = steps.map((item) => ({
     key: item.title,
     title: item.title,
@@ -63,16 +68,6 @@ export default function Booking() {
               }
             >
               Confirm
-            </Button>
-          )}
-          {current > 0 && (
-            <Button
-              style={{
-                margin: "0 8px",
-              }}
-              onClick={() => prev()}
-            >
-              Previous
             </Button>
           )}
         </div>

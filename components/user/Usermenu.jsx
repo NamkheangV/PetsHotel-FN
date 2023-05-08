@@ -1,6 +1,6 @@
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Row, Col, Dropdown, Typography, Spin } from "antd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import { GlobalContext } from "@/lib/AppContext";
 import Link from "next/link";
 import Router from "next/router";

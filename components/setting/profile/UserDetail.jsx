@@ -56,7 +56,7 @@ export default function UserDetail() {
         .then((r) => {
           const { user_image, ...userWithoutImg } = r.data;
           cookieCutter.set("user", JSON.stringify(userWithoutImg));
-          console.log("ress" , r.data);
+          // console.log("ress" , r.data);
           setUser({ ...r.data, user_image: r.data.user_image });
         })
         .catch((err) => {
