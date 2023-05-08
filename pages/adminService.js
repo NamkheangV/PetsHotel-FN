@@ -63,6 +63,7 @@ export default function Admin() {
   const [error, setError] = useState("");
 
   const [booked, setBooked] = useState([]);
+  const [room, setRoom] = useState([]);
 
   useEffect(() => {
     fetchBooked();

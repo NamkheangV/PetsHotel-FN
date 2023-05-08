@@ -18,7 +18,7 @@ export default function Room() {
             }}
             cover={<img alt="standart" src="/Hero01.jpg" />}
           >
-            <Meta title="The Standart" description="Rooms for ......" />
+            <Meta title="The Standart" description="Rooms for smaller pets" />
           </Card>
         </Col>
         <Col span={8}>
@@ -30,7 +30,7 @@ export default function Room() {
             }}
             cover={<img alt="deluxe" src="/Hero02.jpg" />}
           >
-            <Meta title="The Deluxe" description="Rooms for ......" />
+            <Meta title="The Deluxe" description="Rooms for 1 - 2 smaller pets"/>
           </Card>
         </Col>
         <Col span={8}>
@@ -42,7 +42,7 @@ export default function Room() {
             }}
             cover={<img alt="condo" src="/Hero03.jpg" />}
           >
-            <Meta title="The Suite" description="Rooms for ......" />
+            <Meta title="The Suite" description="Rooms for large or 2 - 3 smaller pets" />
           </Card>
         </Col>
       </Row>
@@ -57,7 +57,7 @@ export default function Room() {
             }}
             cover={<img alt="condo" src="/Hero04.jpg" />}
           >
-            <Meta title="The Condo" description="Rooms for ......" />
+            <Meta title="The Condo" description="Rooms for a cat" />
           </Card>
         </Col>
 
@@ -70,7 +70,7 @@ export default function Room() {
             }}
             cover={<img alt="delcon" src="/Hero05.jpg" />}
           >
-            <Meta title="The Deluxe Condo" description="Rooms for ......" />
+            <Meta title="The Deluxe Condo" description="Rooms for 1 - 2 cats"/>
           </Card>
         </Col>
       </Row>
