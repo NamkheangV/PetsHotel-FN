@@ -14,7 +14,7 @@ export default function Adminmenu() {
   const { Text } = Typography;
   const items = [
   {
-    label: <Link href="/adminService">Service</Link>,
+    label: <Link href="/AdminService">Service</Link>,
     key: "0",
   },
   {

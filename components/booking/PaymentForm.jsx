@@ -11,7 +11,7 @@ export default function PaymForm({ bookingData }) {
 
   const { bk_id } = bookingData;
 
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState();
   
   const handlePayment = async () => {
     setLoading(true);

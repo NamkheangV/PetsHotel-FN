@@ -97,7 +97,7 @@ export default function History() {
         onRow={(record, rowIndex) => {
           return {
             onClick: (event) => {
-              router.push(`/booked/${record.bk_id}`);
+              router.push(`/Booked/${record.bk_id}`);
             },
           };
         }}

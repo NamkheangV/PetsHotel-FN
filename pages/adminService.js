@@ -112,7 +112,7 @@ export default function Admin() {
           onRow={(record, rowIndex) => {
             return {
               onClick: (event) => {
-                router.push(`/booked/${record.bk_id}`);
+                router.push(`/Booked/${record.bk_id}`);
                 console.log(record);
               },
             };
