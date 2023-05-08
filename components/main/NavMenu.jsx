@@ -23,7 +23,7 @@ export default function NavMenu() {
         </Link>
       </Menu.Item>
 
-      <Menu.Item key="contact">
+      {/* <Menu.Item key="contact">
         <Link
           to="contact"
           spy={true}
@@ -33,7 +33,7 @@ export default function NavMenu() {
         >
           CONTACT
         </Link>
-      </Menu.Item>
+      </Menu.Item> */}
 
       <Menu.Item key="login">
         {user.user_type === 1 ? (

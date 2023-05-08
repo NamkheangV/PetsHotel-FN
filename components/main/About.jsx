@@ -6,31 +6,34 @@ export default function About() {
       <h1 className={styles.h1}>ABOUT US</h1>
       <div className={styles.p}>
         <p>
-          When mice are kept at high population densities, their behaviour
-          changes
+          At our pet hotel, we provide the best possible care for your furry
+          friends while you're away.
         </p>
         <p>
-          in a number of ways. Aggressive activity within populations of mice
-          rises
+          Our experienced and dedicated staff is passionate about animals and
+          will ensure that your pets receive the attention and care they
+          deserve.
         </p>
         <p>
-          as density increases. Cannibalism of young also goes up, and so does
+          We offer a range of services to make your pet's stay as comfortable as
+          possible.
         </p>
         <p>
-          aberrant sexual activity. Communal nesting, frequent in natural mouse
+          From spacious accommodations to daily exercise and playtime, we strive
+          to make our pet hotel a home away from home for your beloved pets.
         </p>
         <p>
-          populations, increases abnormally. In one example, 58 mice one to
-          three
+          Our facilities are designed with your pet's safety and comfort in
+          mind. 
         </p>
+        <p>We maintain a clean and hygienic environment to ensure that your
+          pets are healthy and happy during their stay.</p>
         <p>
-          days old (from several litters) were found in one nest, most unusual
+          At our pet hotel, we understand that your pets are a part of your
+          family. 
         </p>
-        <p>
-          communal living. None survived because most of the mothers deserted
-          them
-        </p>
-        <p> immediately after birth.</p>
+        <p>That's why we treat them like our own and provide them with
+          the love and attention they need to thrive.</p>
       </div>
     </div>
   );
