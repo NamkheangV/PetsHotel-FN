@@ -114,7 +114,7 @@ const UserImg = () => {
           {loading ? (
             <Spin />
           ) : (
-            <Upload {...props} maxCount={1}>
+            <Upload {...props} maxCount={1} customRequest={({ onSuccess }) => setTimeout(() => { onSuccess("ok", null); }, 0) }>
               <Button icon={<UploadOutlined />}>
                 Edit Your Profile Image 🥰
               </Button>
