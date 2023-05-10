@@ -17,10 +17,10 @@ export default function PaymForm({ bookingData }) {
     setLoading(true);
     const formData = new FormData();
     formData.append("payment_proof", file);
-    console.log("formData", formData);
+
     try {
       const res = await useAxios.put(`/booking/${bk_id}`, formData);
-      console.log("Update", res.data);
+      // console.log("Update", res.data);
       message.success("Update Payment Successfully");
     } catch (e) {
       if (axios.isAxiosError(e)) {
