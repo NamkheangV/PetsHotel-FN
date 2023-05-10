@@ -14,7 +14,7 @@ export default function Usermenu() {
   const { Text } = Typography;
   const items = [
   {
-    label: <Link href="/setting">Setting</Link>,
+    label: <Link href="/Setting">Setting</Link>,
     key: "0",
   },
   {

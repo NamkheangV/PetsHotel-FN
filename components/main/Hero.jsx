@@ -30,7 +30,7 @@ export default function Hero() {
         </Carousel>
 
         <div className={styles.buttons}>
-          <Link href="/booking">
+          <Link href="/Booking">
             <Button className={styles.button} shape="round">
               BOOKING ROOM
             </Button>
